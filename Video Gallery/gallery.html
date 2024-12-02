@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yodel Karaoke Gallery</title>
+    <link rel="stylesheet" href="gallery.css">
+    <link rel="stylesheet" href="gallerymain.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<script src="../Scripts/recorder.js"></script>
+<script src="../Scripts/recorder2.js"></script>
+
+<body>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
+        import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+    
+        const firebaseConfig = {
+          apiKey: "AIzaSyBNGDoDSb31N2Q5AiEXPnMstcBTBbUqQcs",
+          authDomain: "yodel-a5b0b.firebaseapp.com",
+          databaseURL: "https://yodel-a5b0b-default-rtdb.firebaseio.com",
+          projectId: "yodel-a5b0b",
+          storageBucket: "yodel-a5b0b.appspot.com",
+          messagingSenderId: "464923388764",
+          appId: "1:464923388764:web:fb8c55760617bfd0c22f99",
+          measurementId: "G-N907KVFR6E"
+        };
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const auth = getAuth();
+    
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            //
+    
+    
+            const uid = user.uid;
+            // ...
+          } else {
+            //
+            window.location = "../Front/SignIn.html";
+            // ...
+          }
+        });
+      </script>
+    <nav>
+        <ul>
+            <li class="logo">Yodel</li>
+            <li class="btnn2"><span class="fas fa-bars"></span></li>
+            <div class="items">
+                <li><a href="../Front/Yodel.html">Home</a></li>
+                <li><a href="../Video Gallery/gallery.html">Library</a></li>
+                <li><a href="../MediaUploader/uploader.html">Upload</a></li>
+                <li><a href="../Converter/converter.html">Converter</a></li>
+                <li><a href="../Chat/chat.html">Global Chat</a></li>
+                <li><a href="../Editor/index.html">Editor</a></li>
+                <li><a href="../About Us/aboutus.html">About Us</a></li>
+            </div>
+            <li class="search-icon">
+                <input type="search" placeholder="Search">
+                <label class="icon">
+                    <span class="fas fa-search"></span>
+                </label>
+            </li>
+            <div>
+                <li><a href="../Front/SignIn.html"><img src="../Background/images-3.png" alt="signup" width="40"
+                            height="40" style="float: right; margin-left: 20px; border-radius: 15px;"></a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <script>
+        $('nav ul li.btnn2 span').click(function () {
+            $('nav ul div.items').toggleClass("show");
+            $('nav ul li.btnn2 span').toggleClass("show");
+        });
+    </script>
+    <div class="placement" style="display: flex; flex-direction: row; align-items: center;">
+        <header>
+            <div class="overlay">
+                <h1>Yodel Karaoke Player</h1>
+                <div class="mainProperty2">
+                    <div class="holder">
+                        <div data-role="controls">
+                            <button>Record</button>
+                        </div>
+                        <div data-role="recordings"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="main-video" style="width: 115%; margin-left: 100px;">
+                <video src="./video/What's Up - 4 Non Blondes.mp4" controls autoplay></video>
+                <h3 class="title">What's Up - 4 Non Blondes</h3>
+                <div class="videolist">
+                    <div class="search-box">
+                        <i class="bx bx-search"></i>
+                        <input id="myInput" type="text" onkeyup="filterTextInput()" placeholder="Search a song">
+                    </div>
+                    <div class="vid active" data-content="What's Up - 4 Non Blondes">
+                        <video src="./video/What's Up - 4 Non Blondes.mp4"></video>
+                        <h3 class="title">01. What's Up - 4 Non Blondes</h3>
+                    </div>
+                    <div class="vid" data-content="Tom Sawyer - Rush">
+                        <video src="./video/Tom Sawyer - Rush.mp4"></video>
+                        <h3 class="title">02. Tom Sawyer - Rush</h3>
+                    </div>
+                    <div class="vid" data-content="Don't Stop Me Now - Queen">
+                        <video src="./video/Don_t_Stop_Me_Now_-_Queen.mp4"></video>
+                        <h3 class="title">03. Don't Stop Me Now - Queen</h3>
+                    </div>
+                    <div class="vid" data-content="R U Mine - Artic Monkeys">
+                        <video src="./video/R U Mine - Arctic Monkeys.mp4"></video>
+                        <h3 class="title">04. R U Mine - Artic Monkeys</h3>
+                    </div>
+                    <div class="vid" data-content="Mr. Brightside - The Killers">
+                        <video src="./video/Mr._Brightside_-_The_Killers.mp4"></video>
+                        <h3 class="title">05. Mr. Brightside - The Killers</h3>
+                    </div>
+                    <div class="vid" data-content="Hey Ya - Outkast">
+                        <video src="./video/Hey_Ya__-_Outkast.mp4"></video>
+                        <h3 class="title">06. Hey Ya - Outkast</h3>
+                    </div>
+                    <div class="vid" data-content="Fat Lip - Sum 41">
+                        <video src="./video/Fat_Lip_-_Sum_41.mp4"></video>
+                        <h3 class="title">07. Fat Lip - Sum 41</h3>
+                    </div>
+                    <div class="vid" data-content="Crazy - Gnarles Barkley">
+                        <video src="./video/Crazy_-_Gnarls_Barkley.mp4"></video>
+                        <h3 class="title">08. Crazy - Gnarles Barkley</h3>
+                    </div>
+                    <div class="vid" data-content="Creep - Radiohead">
+                        <video src="./video/Creep - Radiohead.mp4"></video>
+                        <h3 class="title">09. Creep - Radiohead</h3>
+                    </div>
+                    <div class="vid" data-content="Like a Stone - Audioslave">
+                        <video src="./video/Like a Stone - Audioslave.mp4"></video>
+                        <h3 class="title">10. Like a Stone - Audioslave</h3>
+                    </div>
+                    <div class="vid" data-content="Losing My Religion - R.E.M">
+                        <video src="./video/Losing My Religion - R.E.M..mp4"></video>
+                        <h3 class="title">11. Losing My Religion - R.E.M.</h3>
+                    </div>
+                    <div class="vid" data-content="21 Guns - Green Day">
+                        <video src="./video/21 Guns - Green Day.mp4"></video>
+                        <h3 class="title">12. 21 Guns - Green Day</h3>
+                    </div>
+                    <div class="vid" data-content="Don't Look Back in Anger - Oasis">
+                        <video src="./video/Don't Look Back in Anger - Oasis.mp4"></video>
+                        <h3 class="title">13. Don't Look Back in Anger - Oasis</h3>
+                    </div>
+                    <div class="vid" data-content="Last Resort - Papa Roach">
+                        <video src="./video/Last Resort - Papa Roach.mp4"></video>
+                        <h3 class="title">14. Last Resort - Papa Roach</h3>
+                    </div>
+                    <div class="vid" data-content="Santeria - Sublime">
+                        <video src="./video/Santeria - Sublime.mp4"></video>
+                        <h3 class="title">15. Santeria - Sublime</h3>
+                    </div>
+                    <div class="vid" data-content="Holy Diver - Dio">
+                        <video src="./video/Holy Diver - Dio.mp4"></video>
+                        <h3 class="title">16. Holy Diver - Dio</h3>
+                    </div>
+                    <div class="vid" data-content="Song 2 - Blur">
+                        <video src="./video/Song 2 - Blur.mp4"></video>
+                        <h3 class="title">17. Song 2 - Blur</h3>
+                    </div>
+                    <div class="vid" data-content="Under Pressure - Queen and David Bowie">
+                        <video src="./video/Under Pressure - by Queen and David Bowie.mp4"></video>
+                        <h3 class="title">18. Under Pressure - Queen and David Bowie</h3>
+                    </div>
+                    <div class="vid" data-content="The Scientist - Coldplay">
+                        <video src="./video/The Scientist - Coldplay.mp4"></video>
+                        <h3 class="title">19. The Scientist - Coldplay</h3>
+                    </div>
+                    <div class="vid" data-content="Yellow - Coldplay">
+                        <video src="./video/Yellow - Coldplay.mp4"></video>
+                        <h3 class="title">20. Yellow - Coldplay</h3>
+                    </div>
+                    <div class="vid" data-content="In the End - Linkin Park">
+                        <video src="./video/In the End - Linkin Park.mp4"></video>
+                        <h3 class="title">21. In the End - Linkin Park</h3>
+                    </div>
+                    <div class="vid" data-content="It Was A Good Day - Ice Cube">
+                        <video src="./video/It Was a Good Day - Ice Cube.mp4"></video>
+                        <h3 class="title">22. It Was A Good Day - Ice Cube</h3>
+                    </div>
+                    <div class="vid" data-content="Sweater Weather - The Neighbourhood">
+                        <video src="./video/Sweater Weather - The Neighbourhood.mp4"></video>
+                        <h3 class="title">23. Sweater Weather - The Neighbourhood</h3>
+                    </div>
+                    <div class="vid" data-content="Say It Ain't So - Weezer">
+                        <video src="./video/Say It Ain't So - Weezer.mp4"></video>
+                        <h3 class="title">24. Say It Ain't So - Weezer</h3>
+                    </div>
+                    <div class="vid" data-content="Heroes - David Bowie">
+                        <video src="./video/Heroes - David Bowie.mp4"></video>
+                        <h3 class="title">25. Heroes - David Bowie</h3>
+                    </div>
+                    <div class="vid" data-content="Dani California - Red Hot Chili Peppers">
+                        <video src="./video/Dani California - Red Hot Chili Peppers.mp4"></video>
+                        <h3 class="title">26. Dani California - Red Hot Chili Peppers</h3>
+                    </div>
+                    <div class="vid" data-content="Sultans of Swing - Dire Straits">
+                        <video src="./video/Sultans of Swing - Dire Straits.mp4"></video>
+                        <h3 class="title">27. Sultans of Swing - Dire Straits</h3>
+                    </div>
+                    <div class="vid" data-content="Feel Good Inc - Gorillaz">
+                        <video src="./video/Feel Good Inc. - Gorillaz.mp4"></video>
+                        <h3 class="title">28. Feel Good Inc - Gorillaz</h3>
+                    </div>
+                    <div class="vid" data-content="Boulevard of Broken Dreams - Green Day">
+                        <video src="./video/Boulevard of Broken Dreams - Green Day.mp4"></video>
+                        <h3 class="title">29. Boulevard of Broken Dreams - Green Day</h3>
+                    </div>
+                    <div class="vid" data-content="Snow - Red Hot Chili Peppers">
+                        <video src="./video/Snow - Red Hot Chili Peppers.mp4"></video>
+                        <h3 class="title">30. Snow - Red Hot Chili Peppers</h3>
+                    </div>
+                </div>
+                <script>
+                    function filterTextInput() {
+                      var input, radios, radio_filter, text_filter, td0, i, divList;
+                      input = document.getElementById("myInput");
+                      text_filter = input.value.toUpperCase();
+                      divList = $(".vid");
+                        
+                     // Loop through all table rows, and hide those who don't match the search query
+                      for (i = 0; i < divList.length; i++) {
+                        td0 = divList[i].getAttribute('data-content');
+                        if (td0) {
+                          if (td0.toUpperCase().indexOf(text_filter) > -1) {
+                            divList[i].style.display = "";
+                          } else {
+                            divList[i].style.display = "none";
+                          }
+                        } 
+                      }
+                    }
+                </script>
+            </div>
+        </div>
+        <script src="gallery.js"></script>
+    </div>
+</body>
+
+</html>

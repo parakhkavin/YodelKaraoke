@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Yodel Karaoke Converter</title>
+  <link rel="stylesheet" href="con_styles.css" />
+  <link rel="stylesheet" href="con_Default.css">
+  <link rel="stylesheet" href="convertermain.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+<script src="../Scripts/recorder.js"></script>
+<script src="../Scripts/recorder2.js"></script>
+
+<body>
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBNGDoDSb31N2Q5AiEXPnMstcBTBbUqQcs",
+      authDomain: "yodel-a5b0b.firebaseapp.com",
+      databaseURL: "https://yodel-a5b0b-default-rtdb.firebaseio.com",
+      projectId: "yodel-a5b0b",
+      storageBucket: "yodel-a5b0b.appspot.com",
+      messagingSenderId: "464923388764",
+      appId: "1:464923388764:web:fb8c55760617bfd0c22f99",
+      measurementId: "G-N907KVFR6E"
+    };
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //
+
+
+        const uid = user.uid;
+        // ...
+      } else {
+        //
+        window.location = "../Front/SignIn.html";
+        // ...
+      }
+    });
+  </script>
+  <nav>
+    <ul>
+      <li class="logo">Yodel</li>
+      <li class="btnn2"><span class="fas fa-bars"></span></li>
+      <div class="items">
+        <li><a href="../Front/Yodel.html">Home</a></li>
+          <li><a href="../Video Gallery/gallery.html">Library</a></li>
+          <li><a href="../MediaUploader/uploader.html">Upload</a></li>
+          <li><a href="../Converter/converter.html">Converter</a></li>
+          <li><a href="../Chat/chat.html">Global Chat</a></li>
+          <li><a href="../Editor/index.html">Editor</a></li>
+          <li><a href="../About Us/aboutus.html">About Us</a></li>
+      </div>
+      <li class="search-icon">
+        <input type="search" placeholder="Search">
+        <label class="icon">
+          <span class="fas fa-search"></span>
+        </label>
+      </li>
+      <div>
+        <li><a href="../Front/SignIn.html"><img src="../Background/images-3.png" alt="signup" width="40" height="40"
+              style="float: right; margin-left: 20px; border-radius: 15px;"></a>
+        </li>
+      </div>
+    </ul>
+  </nav>
+  <div class="placement"
+    style="display: flex; flex-direction: row; align-items: center; justify-content: space-evenly;">
+    <header>
+      <div class="overlay">
+        <h1>Yodel Karaoke Converter</h1>
+        <div class="mainProperty2">
+          <div class="holder">
+            <div data-role="controls">
+              <button>Record</button>
+            </div>
+            <div data-role="recordings"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <script>
+      $('nav ul li.btnn2 span').click(function () {
+        $('nav ul div.items').toggleClass("show");
+        $('nav ul li.btnn2 span').toggleClass("show");
+      });
+    </script>
+    <div class="mainProperty">
+      <div id="filedrag">To convert your Music File to a Karaoke, drag and drop it inside this box!</div>
+      <div id="fileselect-container">
+        <label for="selectVideo"> </label>
+        <input type="file" id="selectVideo" class="btn btn--md btn--green" name="fileselect[]" />
+        <script>
+          document.getElementById("selectVideo").addEventListener("click", function (event) {
+            event.preventDefault()
+          });
+        </script>
+        <button id="refresh1" class="btn btn--md btn--blue" onClick="window.location.reload();">Refresh Page</button>
+        <button id="disable-filter" class="btn btn--md btn--red">Disable Karaoke</button>
+        <a id="demo-audio" href="#"><strong></strong></a>
+        <a href="http://www.jamendo.com/en/track/1074874/happy"></a>
+      </div>
+      <script src="../Scripts/ConverterDataView.js"></script>
+      <script src="../Scripts/ConverterMain.js"></script>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

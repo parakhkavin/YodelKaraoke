@@ -1,0 +1,266 @@
+<html>
+
+<head>
+  <title>Yodel</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <link rel="stylesheet" href="frontstyle.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<style>
+  .fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+  }
+
+  .fa:hover {
+    opacity: 0.7;
+  }
+
+  .fa-facebook {
+    width: 10%;
+    background: #3B5998;
+    color: white;
+  }
+
+  .fa-twitter {
+    width: 10%;
+    background: #55ACEE;
+    color: white;
+  }
+
+  .fa-linkedin {
+    width: 10%;
+    background: #007bb5;
+    color: white;
+  }
+
+  .fa-youtube {
+    width: 10%;
+    background: #bb0000;
+    color: white;
+  }
+
+  .fa-instagram {
+    width: 10%;
+    background: #125688;
+    color: white;
+  }
+
+
+
+  .fa-snapchat-ghost {
+    width: 10%;
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+
+
+
+
+
+  .fa-dribbble {
+    background: #ea4c89;
+    color: white;
+  }
+
+
+  .fa-vine {
+    background: #00b489;
+    color: white;
+  }
+
+  .fa-foursquare {
+    background: #45bbff;
+    color: white;
+  }
+
+  .fa-stumbleupon {
+    background: #eb4924;
+    color: white;
+  }
+
+  .fa-flickr {
+    background: #f40083;
+    color: white;
+  }
+
+
+  .fa-soundcloud {
+    background: #ff5500;
+    color: white;
+  }
+
+
+
+  .fa-rss {
+    background: #ff6600;
+    color: white;
+  }
+</style>
+
+<body>
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBNGDoDSb31N2Q5AiEXPnMstcBTBbUqQcs",
+      authDomain: "yodel-a5b0b.firebaseapp.com",
+      databaseURL: "https://yodel-a5b0b-default-rtdb.firebaseio.com",
+      projectId: "yodel-a5b0b",
+      storageBucket: "yodel-a5b0b.appspot.com",
+      messagingSenderId: "464923388764",
+      appId: "1:464923388764:web:fb8c55760617bfd0c22f99",
+      measurementId: "G-N907KVFR6E"
+    };
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //
+
+
+        const uid = user.uid;
+        // ...
+      } else {
+        //
+        window.location = "SignIn.html";
+        // ...
+      }
+    });
+  </script>
+  <nav>
+    <ul>
+      <li class="logo">Yodel</li>
+      <li class="btnn2"><span class="fas fa-bars" style="color: #fff;"></span></li>
+      <div class="items">
+        <li><a href="../Front/Yodel.html">Home</a></li>
+        <li><a href="../Video Gallery/gallery.html">Library</a></li>
+        <li><a href="../MediaUploader/uploader.html">Upload</a></li>
+        <li><a href="../Converter/converter.html">Converter</a></li>
+        <li><a href="../Chat/chat.html">Global Chat</a></li>
+        <li><a href="../Editor/index.html">Editor</a></li>
+        <li><a href="../About Us/aboutus.html">About Us</a></li>
+      </div>
+      <li class="search-icon">
+        <input type="search" placeholder="Search">
+        <label class="icon">
+          <span class="fas fa-search"></span>
+        </label>
+      </li>
+      <div>
+        <li><a href="../Front/SignIn.html"><img src="../Background/images-3.png" alt="signup" width="40" height="40"
+              style="float: right; margin-left: 20px; border-radius: 15px;"></a>
+        </li>
+      </div>
+    </ul>
+  </nav>
+  <header>
+    <div class="overlay">
+      <h1>Yodel Karaoke</h1>
+    </div>
+  </header>
+  <script>
+    $('nav ul li.btnn2 span').click(function () {
+      $('nav ul div.items').toggleClass("show");
+      $('nav ul li.btnn2 span').toggleClass("show");
+    });
+  </script>
+  <div class="image" style="display:flex; flex-direction:row;">
+    <div class="slideshow-container">
+
+      <!-- Full-width images with number and caption text -->
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 3</div>
+        <img src="Pics/hp4.jpeg" style="width:100%">
+        <div class="text">Let Your Voice Be Heard Through Yodel</div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <img src="Pics/heaphonespurple1.jpeg" style="width:100%">
+        <div class="text">Caption Two</div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <img src="Pics/bg2.jpeg" style="width:100%">
+        <div class="text">Caption Three</div>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div class="main-video" style="width: 115%; margin-left: 100px;">
+        <video src="../Background/Intro.mp4" controls autoplay></video>
+        <h3 class="title" style="align-self: center;">Introduction To Yodel</h3>
+        <div class="videolist">
+          <div class="vid active">
+            <video src="../Background/Intro.mp4"></video>
+            <h3 class="title">Introduction To Yodel</h3>
+          </div>
+          <div class="vid">
+            <video src="../Background/Account.mp4"></video>
+            <h3 class="title">Account Creation</h3>
+          </div>
+          <div class="vid">
+            <video src="../Background/tour.mp4"></video>
+            <h3 class="title">Yodel Tour</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let listVideo = document.querySelectorAll('.vid')
+      let videoSrc = document.querySelector('video')
+      let title = document.querySelector('.title')
+
+      listVideo.forEach((video) => {
+          video.addEventListener('click', () => {
+              listVideo.forEach((video) => video.classList.remove('active'))
+              video.classList.add('active')
+
+
+              if(video.classList.contains('active')) {
+                  let src = video.children[0].getAttribute('src')
+                  videoSrc.src = src
+
+                  let texto = video.children[1].innerHTML
+                  title.innerHTML = texto
+              }
+          })
+      })
+    </script>
+  </div>
+  <div
+    style="display: flex; align-items: center;flex-direction:row; justify-content: center; width: 100%; margin-top: 5%;">
+    <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+    <a href="https://twitter.com/i/flow/login" class="fa fa-twitter"></a>
+    <a href="https://accounts.google.com/signout/chrome/landing?continue=https://www.youtube.com/&oc=https://www.youtube.com/"
+      class="fa fa-youtube"></a>
+    <a href="https://www.instagram.com/accounts/login/" class="fa fa-instagram"></a>
+    <a href="https://accounts.snapchat.com/accounts/login?continue=%2Faccounts%2Fwelcome"
+      class="fa fa-snapchat-ghost"></a>
+  </div>
+
+
+  <script src="slideshow.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="frontstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+</head>
+<style>
+    body {
+        background-image: url("../Background/bg.jpeg");
+    }
+</style>
+
+<body>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
+        import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBNGDoDSb31N2Q5AiEXPnMstcBTBbUqQcs",
+            authDomain: "yodel-a5b0b.firebaseapp.com",
+            databaseURL: "https://yodel-a5b0b-default-rtdb.firebaseio.com",
+            projectId: "yodel-a5b0b",
+            storageBucket: "yodel-a5b0b.appspot.com",
+            messagingSenderId: "464923388764",
+            appId: "1:464923388764:web:fb8c55760617bfd0c22f99",
+            measurementId: "G-N907KVFR6E"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const auth = getAuth();
+
+        login.addEventListener('click', (e) => {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var wrongid = document.getElementById('wrongid');
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    const dt = new Date();
+                    update(ref(database, 'users/' + user.uid), {
+                        last_login: dt,
+                    })
+                    window.location = "Yodel.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log("🚀 ~ file: SignIn.html ~ line 113 ~ login.addEventListener ~ errorMessage", errorMessage)
+                    if (errorMessage == "Firebase: Error (auth/wrong-password).") {
+                        if (wrongid.style.display = 'block' || invalid.style.display == 'block') {
+                            wrongid.style.display = 'none';
+                            invalid.style.display = 'none';
+                        }
+                        wrongpass.style.display = 'block';
+
+                    }
+                    else if (errorMessage == "Firebase: Error (auth/user-not-found).") {
+                        if (wrongpass.style.display == 'block' || invalid.style.display == 'block') {
+                            wrongpass.style.display = 'none';
+                            invalid.style.display = 'none';
+                        }
+                        wrongid.style.display = 'block';
+                    }
+                    else if (errorMessage == "Firebase: Error (auth/invalid-email).") {
+                        if (wrongid.style.display = 'block' || wrongpass.style.display == 'block') {
+                            wrongpass.style.display = 'none'
+                            wrongid.style.display = 'none';
+                        }
+                        invalid.style.display = 'block';
+
+                    }
+
+
+
+                });
+        });
+        document.getElementById("login").addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+        const user = auth.currentUser;
+        var signin = document.getElementById('login');
+        var signout = document.getElementById('logout');
+        var header1 = document.getElementById('header1');
+        var welcome = document.getElementById('welcome');
+        var formbelow = document.getElementById('formbelow');
+        var navi0 = document.getElementById('navi0');
+        var navi1 = document.getElementById('navi1');
+        var navi2 = document.getElementById('navi2');
+        var navi3 = document.getElementById('navi3');
+        var navi4 = document.getElementById('navi4');
+        var navi5 = document.getElementById('navi5');
+        var navi6 = document.getElementById('navi6');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                signin.style.display = 'none';
+                signout.style.display = 'block';
+                header1.style.display = 'none';
+                welcome.style.display = 'block';
+                formbelow.style.display = 'none';
+                email.style.display = 'none';
+                password.style.display = 'none';
+                navi0.style.display = 'block';
+                navi1.style.display = 'block';
+                navi2.style.display = 'block';
+                navi3.style.display = 'block';
+                navi4.style.display = 'block';
+                navi5.style.display = 'block';
+                navi6.style.display = 'none';
+
+                const uid = user.uid;
+                // ...
+            } else {
+                //
+                navi0.style.display = 'none';
+                navi1.style.display = 'none';
+                navi2.style.display = 'none';
+                navi3.style.display = 'none';
+                navi4.style.display = 'none';
+                navi5.style.display = 'none';
+                navi6.style.display = 'block';
+                // ...
+            }
+        });
+
+        logout.addEventListener('click', (e) => {
+            signOut(auth).
+                then(() => {
+                    //
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        });
+
+
+
+
+    </script>
+
+    <nav>
+        <ul>
+            <li class="logo">Yodel</li>
+            <li class="btnn2"><span class="fas fa-bars"></span></li>
+            <div class="items">
+                <li id="navi0" style="display: none"><a href="../Front/Yodel.html">Home</a></li>
+                <li id="navi1" style="display: none"><a href="../Video Gallery/gallery.html">Library</a></li>
+                <li id="navi2" style="display: none"><a href="../MediaUploader/uploader.html">Upload</a></li>
+                <li id="navi3" style="display: none"><a href="../Converter/converter.html">Converter</a></li>
+                <li id="navi4" style="display: none"><a href="../Chat/chat.html">Global Chat</a></li>
+                <li id="navi5" style="display: none"><a href="../Editor/index.html">Editor</a></li>
+                <li><a href="../About Us/aboutus.html">About Us</a></li>
+                <li id="navi6" style="display: none"><a href="../Contact Us/contact.html">Contact</a></li>
+            </div>
+            <li class="search-icon">
+                <input type="search" placeholder="Search">
+                <label class="icon">
+                    <span class="fas fa-search"></span>
+                </label>
+            </li>
+            <div>
+                <li><a href="../Front/SignIn.html"><img src="../Background/images-3.png" alt="signup" width="40"
+                            height="40" style="float: right; margin-left: 20px; border-radius: 15px;"></a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <script>
+        $('nav ul li.btnn2 span').click(function () {
+            $('nav ul div.items').toggleClass("show");
+            $('nav ul li.btnn2 span').toggleClass("show");
+        });
+    </script>
+    <div class="sign-up-form">
+        <h1 id="header1">Log In</h1>
+        <h1 id="welcome" style="display: none;">Welcome</h1>
+        <form>
+            <input type="text" id="email" class="input-box" autocomplete="tel" placeholder="Your Email...">
+            <input type="password" id="password" class="input-box" autocomplete="tel" placeholder="Your Password...">
+            <p id="wrongid" style="display: none; color: red; font-style: italic;">The entered email is incorrect</p>
+            <p id="invalid" style="display: none; color: red; font-style: italic;">The entered email is invalid</p>
+            <p id="wrongpass" style="display: none; color: red; font-style: italic;">The entered password is incorrect
+            </p>
+            <input type="submit" id="login" class="signup-btn" value="Log In">
+            <input type="submit" id="logout" class="signup-btn" value="Log Out" style="display: none;">
+            <div id="formbelow">
+                <hr style="width: auto;">
+                <p class="or">OR</p>
+                <!--<button type="button" id="google" class="fb-btn">Login with Google</button>-->
+                <p class="chckbox">Don't Have an account? <a class="chckbox" href="SignUp.html" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">Sign Up</a></p>
+                <script>
+                    function mouseOver (obj) {
+                        obj.style.color = "#1c8adb";
+                    }
+                    function mouseOut (obj) {
+                        obj.style.color = "black";
+                    }
+                </script>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

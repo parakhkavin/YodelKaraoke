@@ -1,0 +1,116 @@
+<html>
+<html lang="en">
+
+<head>
+    <title>Yodel Karaoke</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="navstyle.css">
+    <link rel="stylesheet" href="btnstyle.css">
+    <link rel="stylesheet" href="uploadermain.css">
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+<script src="../Scripts/recorder.js"></script>
+<script src="../Scripts/recorder2.js"></script>
+<script src="mediauploader.js"></script>
+
+<body>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
+        import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBNGDoDSb31N2Q5AiEXPnMstcBTBbUqQcs",
+            authDomain: "yodel-a5b0b.firebaseapp.com",
+            databaseURL: "https://yodel-a5b0b-default-rtdb.firebaseio.com",
+            projectId: "yodel-a5b0b",
+            storageBucket: "yodel-a5b0b.appspot.com",
+            messagingSenderId: "464923388764",
+            appId: "1:464923388764:web:fb8c55760617bfd0c22f99",
+            measurementId: "G-N907KVFR6E"
+        };
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                //
+
+
+                const uid = user.uid;
+                // ...
+            } else {
+                //
+                window.location = "../Front/SignIn.html";
+                // ...
+            }
+        });
+    </script>
+    <nav>
+        <ul>
+            <li class="logo">Yodel</li>
+            <li class="btnn2"><span class="fas fa-bars"></span></li>
+            <div class="items">
+                <li><a href="../Front/Yodel.html">Home</a></li>
+                <li><a href="../Video Gallery/gallery.html">Library</a></li>
+                <li><a href="../MediaUploader/uploader.html">Upload</a></li>
+                <li><a href="../Converter/converter.html">Converter</a></li>
+                <li><a href="../Chat/chat.html">Global Chat</a></li>
+                <li><a href="../About Us/aboutus.html">About Us</a></li>
+                <li><a href="../Contact Us/contact.html">Contact</a></li>
+            </div>
+            <li class="search-icon">
+                <input type="search" placeholder="Search">
+                <label class="icon">
+                    <span class="fas fa-search"></span>
+                </label>
+            </li>
+            <div>
+                <li><a href="../Front/SignIn.html"><img src="../Background/images-3.png" alt="signup" width="40"
+                            height="40" style="float: right; margin-left: 20px; border-radius: 15px;"></a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <script>
+        $('nav ul li.btnn2 span').click(function () {
+            $('nav ul div.items').toggleClass("show");
+            $('nav ul li.btnn2 span').toggleClass("show");
+        });
+    </script>
+    <div class="placement" style="display: flex; flex-direction: row; align-items: center; column-count: 2;">
+        <header>
+            <div class="overlay">
+                <h1>Yodel Karaoke Player</h1>
+                <div class="mainProperty2">
+                    <div class="holder">
+                        <div data-role="controls">
+                            <button>Record</button>
+                        </div>
+                        <div data-role="recordings"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="mainProperty">
+            <video id="playVideo" controls autoplay type="audio*/mp4" border-radius: 10px>YOUR BROWSER DOES NOT SUPPORT
+                THIS VIDEO FORMAT.</video>
+            <div class="rt">
+                <input autocapitalize="on" id="selectVideo" class="upload" type="file" accept="audio/*" name="fl">
+                <input id="refresh1" class="refresh" type="button" value="Refresh Page"
+                    onclick="window.location.reload()">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

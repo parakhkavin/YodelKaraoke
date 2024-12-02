@@ -1,0 +1,58 @@
+body {
+	text-align: center;
+	color: green;
+	font-size: 1.2em;
+    background-image: url("bg.jpeg");
+    background-size: cover  ;
+    align-items: center;
+    height: 100%;
+    width: 100%;    
+    display: grid;
+    place-content: center;
+    min-block-size: 100%;
+    min-inline-size: 100%;
+    box-sizing: border-box;
+    font-family: system-ui;
+    font-size: min(200%, 5vmin);
+}
+article {
+    background: linear-gradient(
+      to right, 
+      hsl(250,28%,70.6%), 
+      hsl(204 100% 59%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+
+.display-none {
+	display: none;
+    font-size: 5    vmin;
+    line-height: 1.1;
+}
+
+.recording {
+	color: red;
+	background-color: rgb(241 211 211);
+	padding: 5px;
+	margin: 6px auto;
+	width: fit-content;
+}
+
+video {
+	background-color: black;
+	display: block;
+	margin: 6px auto;
+	width: 420px;
+	height: 240px;
+}
+
+audio {
+	display: block;
+	margin: 6px auto;
+}
+
+a {
+	color: green;
+}

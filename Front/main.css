@@ -1,0 +1,138 @@
+body {
+    background-image: linear-gradient(135deg, #efd6ff 10%, #ebe8fa 10%);
+    background-size: cover;
+}
+
+header {
+    background-image: url("../Background/bg.jpeg");
+    text-align: center;
+    width: 100%;
+    height: 70%;
+    background-size: cover;
+    background-attachment: fixed;
+    position: static;
+    overflow: hidden;
+    border-radius: 0 0 85% 85% / 30%;
+    justify-content: center;
+}
+
+header .overlay {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #333;
+    justify-content: center;
+    display: flex;
+
+}
+
+h1 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    position: static;
+    font-size: 72px;
+    color: #333;
+    justify-content: center;
+    margin-bottom: 200px;
+
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+.mySlides {
+    display: none;
+}
+
+img {
+    vertical-align: middle;
+    border-radius: 15px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    width: 50%;
+    height: auto;
+    position: relative;
+    margin-left: 50px;
+    border-radius: 15px;
+    margin-top: 70px;
+    border-radius: 50%;
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    margin-right: 30px;
+}
+
+.active {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .text {
+        font-size: 11px
+    }
+}

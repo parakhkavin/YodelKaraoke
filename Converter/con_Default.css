@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900");
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: .3em;
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 -0.25em 0 rgba(0, 0, 0, 0.25), 0 0.25em 0.25em rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 -0.25em 0 rgba(0, 0, 0, 0.25), 0 0.25em 0.25em rgba(0, 0, 0, 0.05);
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  padding: .5em 1.5em .75em;
+  position: relative;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.25);
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn:active {
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), inset 0 2px 0 rgba(255, 255, 255, 0.1), inset 0 0.25em 0.5em rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), inset 0 2px 0 rgba(255, 255, 255, 0.1), inset 0 0.25em 0.5em rgba(0, 0, 0, 0.05);
+  margin-top: .25em;
+  padding-bottom: .5em;
+  background-color: #a69fc9;
+}
+
+.btn:active, .btn:focus {
+  outline: none;
+
+}
+
+.btn--blue::-webkit-file-upload-button {
+  background-color: #ec84ec;
+}
+
+.btn--green::-webkit-file-upload-button {
+  opacity: 0;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 35%;
+}
+
+.btn--red::-webkit-file-upload-button {
+  background-color: #a69fc9;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn--blue {
+  background-color: #a69fc9;
+}
+
+.btn--green {
+  background-color: #a69fc9;
+}
+
+.btn--green:active {
+  background-color: #a69fc9;
+}
+
+.btn--green:focus {
+  background-color: #a69fc9;
+}
+
+.btn--red {
+  background-color: #f3786a;
+}
+
+.btn--lg {
+  font-size: auto;
+}
+
+.btn--df {
+  font-size: auto;
+}
+
+.btn--md {
+  font-size: auto;
+}
+
+.btn--sm {
+  font-size: auto;
+}
+
+.rt {
+  margin-left: 140px;
+}

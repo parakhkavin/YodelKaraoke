@@ -1,0 +1,194 @@
+<html>
+
+<head>
+    <title>About Us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="frontstyle.css">
+
+
+
+</head>
+
+<body>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
+        import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBNGDoDSb31N2Q5AiEXPnMstcBTBbUqQcs",
+            authDomain: "yodel-a5b0b.firebaseapp.com",
+            databaseURL: "https://yodel-a5b0b-default-rtdb.firebaseio.com",
+            projectId: "yodel-a5b0b",
+            storageBucket: "yodel-a5b0b.appspot.com",
+            messagingSenderId: "464923388764",
+            appId: "1:464923388764:web:fb8c55760617bfd0c22f99",
+            measurementId: "G-N907KVFR6E"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const auth = getAuth();
+        const user = auth.currentUser;
+        var navi0 = document.getElementById('navi0');
+        var navi1 = document.getElementById('navi1');
+        var navi2 = document.getElementById('navi2');
+        var navi3 = document.getElementById('navi3');
+        var navi4 = document.getElementById('navi4');
+        var navi5 = document.getElementById('navi5');
+        var navi6 = document.getElementById('navi6');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navi0.style.display = 'block';
+                navi1.style.display = 'block';
+                navi2.style.display = 'block';
+                navi3.style.display = 'block';
+                navi4.style.display = 'block';
+                navi5.style.display = 'block';
+                navi6.style.display = 'none';
+                const uid = user.uid;
+                // ...
+            } else {
+                //
+                navi0.style.display = 'none';
+                navi1.style.display = 'none';
+                navi2.style.display = 'none';
+                navi3.style.display = 'none';
+                navi4.style.display = 'none';
+                navi5.style.display = 'none';
+                navi6.style.display = 'block';
+                // ...
+            }
+        });
+    </script>
+    <nav>
+        <ul>
+            <li class="logo">Yodel</li>
+            <li class="btnn2"><span class="fas fa-bars" style="color: #fff;"></span></li>
+            <div class="items">
+                <li id="navi0" style="display: none"><a href="../Front/Yodel.html">Home</a></li>
+                <li id="navi1" style="display: none"><a href="../Video Gallery/gallery.html">Library</a></li>
+                <li id="navi2" style="display: none"><a href="../MediaUploader/uploader.html">Upload</a></li>
+                <li id="navi3" style="display: none"><a href="../Converter/converter.html">Converter</a></li>
+                <li id="navi4" style="display: none"><a href="../Chat/chat.html">Global Chat</a></li>
+                <li id="navi5" style="display: none"><a href="../Editor/index.html">Editor</a></li>
+                <li><a href="../About Us/aboutus.html">About Us</a></li>
+                <li id="navi6" style="display: none"><a href="../Contact Us/contact.html">Contact</a></li>
+            </div>
+            <li class="search-icon">
+                <input type="search" placeholder="Search">
+                <label class="icon">
+                    <span class="fas fa-search"></span>
+                </label>
+            </li>
+            <div>
+                <li><a href="../Front/SignIn.html"><img src="../Background/images-3.png" alt="signup" width="40"
+                            height="40" style="float: right; margin-left: 20px; border-radius: 15px;"></a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <header>
+        <div class="overlay">
+            <h1>Yodel Karaoke</h1>
+        </div>
+    </header>
+    <script>
+        $('nav ul li.btnn2 span').click(function () {
+            $('nav ul div.items').toggleClass("show");
+            $('nav ul li.btnn2 span').toggleClass("show");
+        });
+    </script>
+    <div class="about">
+        <div class="inner-section">
+            <h1>About Us</h1>
+            <p class="text">
+                YODEL is a recreational web application which enables multiple users to sing. This Karaoke application
+                will be your own definition of entertainment. It contains a wide range of songs along with audio editing
+                features. For the competitive users, they can share their recordings with their friends and family.
+            </p>
+            <div class="skills">
+                <button onclick="window.location.href='../Contact Us/contact.html';">Contact Us</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="content">
+                <div class="imgBx">
+                    <img src="../Background/ruch.jpg" alt="">
+                </div>
+                <div class="contentBx">
+                    <h4>Ruchika Mehta</h4>
+                    <h5>Backend Developer</h5>
+                </div>
+                <div class="sci">
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="imgBx">
+                    <img src="../Background/nam.jpeg" alt="">
+                </div>
+                <div class="contentBx">
+                    <h4>Nam Hoang</h4>
+                    <h5>UI/UX Designer</h5>
+                </div>
+                <div class="sci">
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="imgBx">
+                    <img src="../Background/nik.jpeg" alt="">
+                </div>
+                <div class="contentBx">
+                    <h4>Nik Silvinksi</h4>
+                    <h5>Frontend Developer</h5>
+                </div>
+                <div class="sci">
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="imgBx">
+                    <img src="../Background/kav.jpg" alt="">
+                </div>
+                <div class="contentBx">
+                    <h4>Kavin Parakh</h4>
+                    <h5>Full Stack</h5>
+                </div>
+                <div class="sci">
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="slideshow.js"></script>
+</body>
+
+</html>

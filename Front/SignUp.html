@@ -1,0 +1,256 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up form</title>
+  <link rel="stylesheet" href="frontstyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+</head>
+<style>
+  body {
+    background-image: url("../Background/bg.jpeg");
+  }
+</style>
+
+<body>
+  <nav>
+    <ul>
+      <li class="logo">Yodel</li>
+      <li class="btnn2"><span class="fas fa-bars"></span></li>
+      <div class="items">
+        <li id="navi0" style="display: none"><a href="../Front/Yodel.html">Home</a></li>
+        <li id="navi1" style="display: none"><a href="../Video Gallery/gallery.html">Library</a></li>
+        <li id="navi2" style="display: none"><a href="../MediaUploader/uploader.html">Upload</a></li>
+        <li id="navi3" style="display: none"><a href="../Converter/converter.html">Converter</a></li>
+        <li id="navi4" style="display: none"><a href="../Chat/chat.html">Global Chat</a></li>
+        <li id="navi5" style="display: none"><a href="../Editor/index.html">Editor</a></li>
+        <li><a href="../About Us/aboutus.html">About Us</a></li>
+        <li id="navi6" style="display: block"><a href="../Contact Us/contact.html">Contact</a></li>
+      </div>
+      <li class="search-icon">
+        <input type="search" placeholder="Search">
+        <label class="icon">
+          <span class="fas fa-search"></span>
+        </label>
+      </li>
+      <div>
+        <li><a href="../Front/SignUp.html"><img src="../Background/images-3.png" alt="signup" width="40" height="40"
+              style="float: right; margin-left: 20px; border-radius: 15px;"></a>
+        </li>
+      </div>
+    </ul>
+  </nav>
+  <script>
+    $('nav ul li.btnn2 span').click(function () {
+      $('nav ul div.items').toggleClass("show");
+      $('nav ul li.btnn2 span').toggleClass("show");
+    });
+  </script>
+  <div class="sign-up-form">
+    <h1> Sign Up Now</h1>
+    <form>
+      <input type="text" id="name" class="input-box" autocomplete="tel" placeholder="Full Name...">
+      <input type="text" id="username" class="input-box" autocomplete="tel" placeholder="User Name...">
+      <input type="text" id="email" class="input-box" autocomplete="tel" placeholder="Your Email...">
+      <input type="password" id="password" class="input-box" autocomplete="tel" placeholder="Your Password...">
+      <p id="emailinuse" style="display: none; color: red; font-style: italic;">Email Already In Use</p>
+      <p id="weakpass" style="display: none; color: red; font-style: italic;">The password should be at least 6
+        characters</p>
+      <p id="invalid" style="display: none; color: red; font-style: italic;">The entered email is invalid</p>
+      <br>
+      <p class="chckbox"><span><input type="checkbox" id="check"></span>  I agree to the <a href=""  onmouseover="mouseOver(this)"
+        onmouseout="mouseOut(this)" id="terms">terms of services</a></p>
+      <input type="submit" id="signUp" class="signup-btn" value="Sign Up" disabled>
+      <hr style="width: auto;">
+      <p class="or">OR</p>
+      <button type="button" id="google" class="fb-btn">Sign In with Google</button>
+      <p class="chckbox">Have an account? <a class="chckbox" href="SignIn.html" onmouseover="mouseOver(this)"
+          onmouseout="mouseOut(this)">Sign In</a></p>
+      <script>
+        function mouseOver(obj) {
+          obj.style.color = "#1c8adb";
+        }
+        function mouseOut(obj) {
+          obj.style.color = "black";
+        }
+      </script>
+      <script>
+        window.addEventListener("load", function() {
+          document.getElementById("signUp").disabled=true; // or removeAttribute("disabled")
+          document.getElementById("google").disabled=true;
+        })
+        // Retrieve reference to checkbox
+        const disableCheckBox = document.getElementById("check");
+        // Retrieve reference to button
+        const submitButton = document.getElementById("signUp");
+        const googleButton = document.getElementById("google");
+
+        disableCheckBox.addEventListener("change", (e) => {
+          if (e.target.checked) {
+            // Disable button when checkbox is selected
+            googleButton.disabled = false;
+            submitButton.disabled = false;
+            submitButton.style.opacity = "100%";
+            submitButton.style.cursor = "pointer";
+            googleButton.style.opacity = "100%";
+            googleButton.style.cursor = "pointer";
+          } 
+          else {
+            // Enable button when checkbox is deselected
+            submitButton.disabled = true;
+            submitButton.style.opacity = "50%";
+            submitButton.style.cursor = "default";
+            googleButton.disabled = true;
+            googleButton.style.opacity = "50%";
+            googleButton.style.cursor = "default";
+            
+          }
+          
+          
+        });
+      </script>
+    </form>
+  </div>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
+    import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBNGDoDSb31N2Q5AiEXPnMstcBTBbUqQcs",
+      authDomain: "yodel-a5b0b.firebaseapp.com",
+      databaseURL: "https://yodel-a5b0b-default-rtdb.firebaseio.com",
+      projectId: "yodel-a5b0b",
+      storageBucket: "yodel-a5b0b.appspot.com",
+      messagingSenderId: "464923388764",
+      appId: "1:464923388764:web:fb8c55760617bfd0c22f99",
+      measurementId: "G-N907KVFR6E"
+    };
+
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider(app);
+
+    signUp.addEventListener('click', (e) => {
+
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var username = document.getElementById('username').value;
+      var navi0 = document.getElementById('navi0');
+      var navi1 = document.getElementById('navi1');
+      var navi2 = document.getElementById('navi2');
+      var navi3 = document.getElementById('navi3');
+      var navi4 = document.getElementById('navi4');
+      var navi5 = document.getElementById('navi5');
+      var navi6 = document.getElementById('navi6');
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          navi0.style.display = 'block';
+          navi1.style.display = 'block';
+          navi2.style.display = 'block';
+          navi3.style.display = 'block';
+          navi4.style.display = 'block';
+          navi5.style.display = 'block';
+          navi6.style.display = 'none';
+
+          await set(ref(database, 'users/' + user.uid), {
+            name: name,
+            username: username,
+            email: email
+          })
+
+          window.location = "Yodel.html";
+          // ...
+        })
+
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          if (errorMessage == "Firebase: Error (auth/email-already-in-use).") {
+            if (weakpass.style.display == "block" || invalid.style.display == 'block') {
+              weakpass.style.display = "none";
+              invalid.style.display = 'none';
+            }
+            emailinuse.style.display = "block";
+          }
+          else if (errorMessage == "Firebase: Password should be at least 6 characters (auth/weak-password).") {
+            if (emailinuse.style.display == "block" || invalid.style.display == 'block') {
+              emailinuse.style.display = "none";
+              invalid.style.display = 'none';
+            }
+            weakpass.style.display = "block";
+          }
+          else if (errorMessage == "Firebase: Error (auth/invalid-email).") {
+            if (weakpass.style.display == 'block' || emailinuse.style.display == 'block') {
+              weakpass.style.display = "none";
+              emailinuse.style.display = "none";
+            }
+            invalid.style.display = 'block';
+          }
+
+          // ..
+        });
+    });
+    google.addEventListener('click', (e) => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+          window.location = "Yodel.html"
+
+
+          //alert(user.displayName);
+          // ...
+        }).catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          // ...
+
+          alert(errorMessage);
+        });
+      logout.addEventListener('click', (e) => {
+        signOut(auth).
+          then(() => {
+            //
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage);
+          });
+      });
+    });
+    document.getElementById("signUp").addEventListener("click", function (event) {
+      event.preventDefault()
+    });
+  </script>
+
+</body>
+
+</html>
