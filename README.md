@@ -99,7 +99,7 @@ Yodel Karaoke combines multimedia interaction with a social environment. Users c
 ---
 
 ## License
-This project is licensed under the GNU 3.0 License. See the 'LICENSE' file for details.
+This project is licensed under the GNU 3.0 License. See the `LICENSE` file for details.
 
 ---
 
